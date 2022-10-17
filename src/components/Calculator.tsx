@@ -15,7 +15,7 @@ const Calculator = () => {
     useEffect(() => {
         setNum1(number);
         setNumber('');
-        inputValue.current.focus();
+        //inputValue.current.focus();
     },[operator])
 
     const handleChangeEqual = () => {
