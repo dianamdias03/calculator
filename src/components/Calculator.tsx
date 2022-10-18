@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
 import '../App.css'
-import { operation } from "../service/calculator";
+import { operation, operationUnicNumber } from "../service/calculator";
 
 const Calculator = () => {
 
@@ -15,14 +15,13 @@ const Calculator = () => {
     useEffect(() => {
         setNum1(number);
         setNumber('');
-        //inputValue.current.focus();
+        if(operator === 'squareRoot'){
+            setNumber(operationUnicNumber(Number(number), operator).toString())
+        }
     },[operator])
 
     const handleChangeEqual = () => {
-        console.log(typeof number)
         setNum2(number); 
-        console.log(num2)
-        //setNumber('')
         setNumber(operation(Number(num1), Number(number), operator));
     }
 
@@ -39,7 +38,6 @@ const Calculator = () => {
     }
 
     const onKeyPress = (event: any) => {
-        //console.log(event.key)
         if(event.key == '/' || event.key == '*' || event.key == '-' || event.key == '+'){
             setOperator(event.key)
         }
@@ -66,15 +64,15 @@ const Calculator = () => {
                     <table>
                         <tbody>
                             <tr>
-                                <td><button type="button">%</button></td>
+                                <td><button type="button" onClick={() => {setOperator('percentage')}}>%</button></td>
                                 <td><button type="button" onClick={clear}>CE</button></td>
-                                <td><button type="button">C</button></td>
+                                <td><button type="button" onClick={clear}>C</button></td>
                                 <td><button type="button" onClick={() => {setNumber(number.substring(0, number.length - 1))}}>del</button></td>
                             </tr>
                             <tr>
                                 <td><button type="button">1/x</button></td>
-                                <td><button type="button">x2</button></td>
-                                <td><button type="button">vx</button></td>
+                                <td><button type="button">x²</button></td>
+                                <td><button type="button" onClick={() => {setOperator('squareRoot')}}>√x</button></td>
                                 <td><button type="button" onClick={() => {setOperator('/')}}>/</button></td>
                             </tr>
                             <tr>

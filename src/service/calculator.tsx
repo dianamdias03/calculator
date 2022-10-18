@@ -12,3 +12,13 @@ export function operation (num1: number, num2: number, operator: string) {
             return '';
     }
 }
+
+export function operationUnicNumber(num: number, operator: string){
+    switch (operator) {
+        case 'squareRoot':
+            return Math.sqrt(num);
+        default:
+            return '';
+    }
+    
+}
